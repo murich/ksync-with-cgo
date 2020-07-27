@@ -70,11 +70,11 @@ endif
 
 .PHONY: docker-binary
 docker-binary: BINDIR = $(CURDIR)/bin
-docker-binary: GOFLAGS += -installsuffix cgo
+#docker-binary: GOFLAGS += -installsuffix cgo
 docker-binary: docker-binary-radar
 
 docker-binary-%:
-	time GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 \
+	time GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=1 \
 		$(GO) build $(GOFLAGS) \
 			-tags '$(TAGS)' \
 			-ldflags '$(LDFLAGS)' \
